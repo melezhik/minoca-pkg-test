@@ -21,11 +21,9 @@ if ($stage=~/is up to date/){
  [ 'regexp: Package\s+'.$pkg.'\s+\('.$version.'\)\s+installed in root' ]
 }elsif ($stage=~/Installing\s/){
   [
-    'begin:',
     'regexp: Installing\s+'.$pkg.'\s+\('.$version.'\)\s+on root',
     'Downloading',
     'regexp: Configuring '.$pkg.'\.',
-    'end:'
   ]
 }else{
   []
