@@ -68,9 +68,18 @@ A default smoke test list is set at [default configuration file](https://github.
 You may redefine it as well:
 
     $ sparrow task ini minoca/third-party-test
+
+    <packages>
+      tar 1.27.1
+    </packages>
+  
     <smoke_test>
       # bla bla bla
-    <smoke_test>
+      <tar>
+        command tar --version
+        outout tar (GNU tar)    
+      </tar>
+    </smoke_test>
 
 # Author
 
