@@ -14,7 +14,8 @@ Install third party package, run package specific tests
 
     $ sparrow plg run minoca-pkg-test
 
-    ![minoca-pkg-test screen shot](https://raw.githubusercontent.com/melezhik/minoca-pkg-test/master/minoca-pkg-test.png)
+
+![minoca-pkg-test screen shot](https://raw.githubusercontent.com/melezhik/minoca-pkg-test/master/minoca-pkg-test.png)
 
 # Setting package list
 
