@@ -23,8 +23,8 @@ By default package list to be verified defined at [default configuration file](h
 
 You may redefine one either via command line:
 
-    $ sparrow plg run minoca-pkg-test pkg-list=perl-5.20.1,sqlite=3080500
-    $ sparrow plg run minoca-pkg-test pkg-list=perl,sqlite # will pick up packages versions from default list
+    $ sparrow plg run minoca-pkg-test --param pkg-list=perl-5.20.1,sqlite=3080500
+    $ sparrow plg run minoca-pkg-test --param pkg-list=perl,sqlite # will pick up packages versions from default list
 
 Or via sparrow task:
 
