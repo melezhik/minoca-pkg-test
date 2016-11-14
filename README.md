@@ -8,7 +8,7 @@ Install third party package, run package specific tests
 
 # INSTALL
 
-    $ sparrow plg run minoca-pkg-test
+    $ sparrow plg install minoca-pkg-test
 
 # USAGE
 
