@@ -64,21 +64,21 @@ Every package in `package list` could be optionally accompanied a smoke test com
 
 A default smoke test list is set at [default configuration file](https://github.com/melezhik/minoca-pkg-test/blob/master/suite.ini)
     
-
 You may redefine it as well:
 
     $ sparrow task ini minoca/third-party-test
 
     <packages>
       tar 1.27.1
+      # bla bla bla
     </packages>
   
     <smoke_test>
-      # bla bla bla
       <tar>
         command tar --version
-        outout tar (GNU tar)    
+        output tar (GNU tar)    
       </tar>
+      # bla bla bla
     </smoke_test>
 
 # Author
