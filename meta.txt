@@ -1,0 +1,2 @@
+install package and run package specific tests
+
