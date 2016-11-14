@@ -17,9 +17,9 @@ Install third party package, run package specific tests
 
 ![minoca-pkg-test screen shot](https://raw.githubusercontent.com/melezhik/minoca-pkg-test/master/minoca-pkg-test.png)
 
-# Setting package list
+# Confuguring package list
 
-By default package list to be verified defined at [default list](https://github.com/melezhik/minoca-pkg-test/blob/master/suite.ini).
+By default package list to be verified defined at [default configuration file](https://github.com/melezhik/minoca-pkg-test/blob/master/suite.ini).
 
 You may redefine one either via command line:
 
@@ -36,11 +36,44 @@ Or via sparrow task:
     <packages>
       perl 5.20.1
       sqlite 3080500  
+      screen 4.4.0
     </packages>
     
     $ sparrow task run minoca/third-party-test
 
 
-  
+# Configuring smoke tests
+
+Every package in `package list` could be optionaly accompanied a smoke test command with output verified:
+
+
+    <smoke_test>
+      <perl>
+        command perl --version
+        output  This is perl 5
+      </perl>
+      <sqlite>
+        command sqlite3 --version
+        output regexp: \d\.\d\.\d
+      </sqlite>
+      <screen>
+        command screen --version
+        output regexp: Screen version \d
+      </screen>
+    </smoke_test>
+
+A default smoke test list is set at [default configuration file](https://github.com/melezhik/minoca-pkg-test/blob/master/suite.ini)
+    
+
+You may redefine it as well:
+
+    $ sparrow task ini minoca/third-party-test
+    <smoke_test>
+      # bla bla bla
+    <smoke_test>
+
+# Author
+
+[Alexey Melezhik](mailto:melezhik@gmail.com)  
 
 
