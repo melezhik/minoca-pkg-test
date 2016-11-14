@@ -17,7 +17,7 @@ Install third party package, run package specific tests
 
 ![minoca-pkg-test screen shot](https://raw.githubusercontent.com/melezhik/minoca-pkg-test/master/minoca-pkg-test.png)
 
-# Confuguring package list
+# Configuring package list
 
 By default package list to be verified defined at [default configuration file](https://github.com/melezhik/minoca-pkg-test/blob/master/suite.ini).
 
@@ -44,7 +44,7 @@ Or via sparrow task:
 
 # Configuring smoke tests
 
-Every package in `package list` could be optionaly accompanied a smoke test command with output verified:
+Every package in `package list` could be optionally accompanied a smoke test command with output verified:
 
 
     <smoke_test>
