@@ -8,12 +8,14 @@ Install third party package, run package specific tests
 
 # INSTALL
 
+On running minoca instance:
+
+    $ wget -O - http://sparrowhub.org/minoca.sh | sh # bootstraping sparrow tool
     $ sparrow plg install minoca-pkg-test
 
 # USAGE
 
     $ sparrow plg run minoca-pkg-test
-
 
 ![minoca-pkg-test screen shot](https://raw.githubusercontent.com/melezhik/minoca-pkg-test/master/minoca-pkg-test.png)
 
@@ -41,6 +43,15 @@ Or via sparrow task:
     
     $ sparrow task run minoca/third-party-test
 
+You can omit versions check when defining packages list:
+
+    $ sparrow task ini minoca/third-party-test
+
+    <packages>
+      perl
+      sqlite
+      screen
+    </packages>
 
 # Configuring smoke tests
 
