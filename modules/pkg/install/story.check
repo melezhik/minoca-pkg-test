@@ -18,10 +18,18 @@ my $stage = capture()->[0];
 my $pkg = story_var('pkg');
 
 if ($stage=~/is up to date/){
- [ 'regexp: Package\s+'.$pkg.'\s+\('.$version.'\)\s+installed in root' ]
+ $version ? 
+    [ 'regexp: Package\s+'.$pkg.'\s+\('.$version.'\)\s+installed in root' ] : 
+    [ 'regexp: Package\s+'.$pkg.'\s+\(\S+\)\s+installed in root' ] 
 }elsif ($stage=~/Installing\s/){
   [
-    'regexp: Installing\s+'.$pkg.'\s+\('.$version.'\)\s+on root',
+    ( 
+      $version ? 
+        'regexp: Installing\s+'.$pkg.'\s+\('.$version.'\)\s+on root' :
+        'regexp: Installing\s+'.$pkg.'\s+\(\S+\)\s+on root'
+      
+    ),
+
     'Downloading',
     'regexp: Configuring '.$pkg.'\.',
   ]

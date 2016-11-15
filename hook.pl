@@ -11,14 +11,14 @@ if (config()->{'pkg-list'}){
 
 my $smoke_test = config()->{'smoke_test'};
 
-for my $p (@list){
+for my $p (sort @list){
   if (my $version = $list->{$p} ){
     run_story("pkg/install", { pkg => $p , version => $version  });
-    run_story("pkg/test", { pkg => $p , command => $smoke_test->{$p}->{command} || 'echo' });
+    run_story("pkg/test", { pkg => $p , command => $smoke_test->{$p}->{command}});
   } else {
     my ($pkg,$version) = split /-/, $p;
     run_story("pkg/install", { pkg => $pkg , version => $version });
-    run_story("pkg/test", { pkg => $pkg , command => $smoke_test->{$pkg}->{command} || 'echo' });
+    run_story("pkg/test", { pkg => $pkg , command => $smoke_test->{$pkg}->{command}});
   }
 }
 
