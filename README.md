@@ -92,6 +92,15 @@ You may redefine it as well:
       # bla bla bla
     </smoke_test>
 
+# Other helper actions
+
+## List installed packages
+
+Sometimes it's good to know what is installed before running tests:
+
+    $ sparrow plg run minoca-pkg-test --param action=list-installed
+
+
 # Author
 
 [Alexey Melezhik](mailto:melezhik@gmail.com)  

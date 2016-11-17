@@ -1,3 +1,8 @@
+if (config()->{action} eq 'list-installed'){
+  run_story('list-installed');
+  exit;
+}
+
 my $list =  config()->{packages};
 my $seen;
 my @list;
