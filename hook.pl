@@ -14,16 +14,25 @@ if (config()->{'pkg-list'}){
 }
 
 
-my $smoke_test = config()->{'smoke_test'};
+my $smoke_test    = config()->{'smoke_test'};
+my %bad_packages  = map { $_ => 1 } keys %{config()->{bad_packages}};
 
 for my $p (sort @list){
   if (my $version = $list->{$p} ){
-    run_story("pkg/install", { pkg => $p , version => $version  });
-    run_story("pkg/test", { pkg => $p , command => $smoke_test->{$p}->{command}});
+    if ($bad_packages{$p}){
+      run_story("pkg/install-fail", { pkg => $p , version => $version  });
+    } else {
+      run_story("pkg/install", { pkg => $p , version => $version  });
+      run_story("pkg/test", { pkg => $p , command => $smoke_test->{$p}->{command}});
+    }
   } else {
     my ($pkg,$version) = split /-/, $p;
-    run_story("pkg/install", { pkg => $pkg , version => $version });
-    run_story("pkg/test", { pkg => $pkg , command => $smoke_test->{$pkg}->{command}});
+    if ($bad_packages{$p}){
+      run_story("pkg/install-fail", { pkg => $pkg , version => $version };
+    } else{
+      run_story("pkg/install", { pkg => $pkg , version => $version };
+      run_story("pkg/test", { pkg => $pkg , command => $smoke_test->{$pkg}->{command}});
+    }
   }
 }
 
