@@ -27,10 +27,10 @@ for my $p (sort @list){
     }
   } else {
     my ($pkg,$version) = split /-/, $p;
-    if ($bad_packages{$p}){
-      run_story("pkg/install-fail", { pkg => $pkg , version => $version };
+    if ($bad_packages{$pkg}){
+      run_story("pkg/install-fail", { pkg => $pkg , version => $version });
     } else{
-      run_story("pkg/install", { pkg => $pkg , version => $version };
+      run_story("pkg/install", { pkg => $pkg , version => $version });
       run_story("pkg/test", { pkg => $pkg , command => $smoke_test->{$pkg}->{command}});
     }
   }
