@@ -38,7 +38,7 @@ for my $p (sort @list){
 
 
 my @s;
-my @chk_list
+my @chk_list;
 
 select(STDERR);
 
