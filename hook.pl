@@ -73,7 +73,7 @@ format STDERR =
 "variables: $s[1]"
 @*
 "scenario status: $s[2]"
-stdout:
+stdout: ( last 3 lines )
 @*
 $s[3]
 
