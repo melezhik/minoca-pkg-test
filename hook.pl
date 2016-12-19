@@ -47,7 +47,7 @@ for my $s (Outthentic::Story::Stat->failures){
       $s->{path},
       ( join ' ', map { "$_: $s->{vars}->{$_}" } keys %{$s->{vars}} ),
       ( $s->{scenario_status} ? "OK" : "FAILED" ),
-      ( join "\n", (@{$s->{stdout}})[ -3 .. -1 ] )
+      ( join "\n", (split "\n", $s->{stdout})[ -3 .. -1 ] )
     );
 
     for my $c (@{$s->{check_stat}}) {
