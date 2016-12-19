@@ -1,6 +1,6 @@
 {
   "name" : "minoca-pkg-test",
   "description" : "Install third party package, run package specific tests",
-  "version" : "0.0.23",
+  "version" : "0.0.24",
   "url" : "https://github.com/melezhik/minoca-pkg-test"
 }

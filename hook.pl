@@ -38,7 +38,7 @@ for my $p (sort @list){
 
 
 my @s;
-my @chk_list;
+my @chk_list
 
 select(STDERR);
 
@@ -50,10 +50,11 @@ for my $s (Outthentic::Story::Stat->failures){
       ( join "\n", (split "\n", $s->{stdout})[ -3 .. -1 ] )
     );
 
+    @chk_list = ();
     for my $c (@{$s->{check_stat}}) {
       push @chk_list, ( $c->{status} ? "ok" : "not ok" ). " - $c->{message}";
     }
-
+    push @chk_list, 'not defined' unless scalar @chk_list; 
   write;
 
 }
@@ -76,7 +77,6 @@ format STDERR =
 stdout: ( last 3 lines )
 @*
 $s[3]
-
 check list:
 @* ~~
 shift @chk_list
