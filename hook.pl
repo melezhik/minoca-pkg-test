@@ -38,25 +38,12 @@ for my $p (sort @list){
 
 
 my @s;
-my @chk_list;
 
 select(STDERR);
 
 for my $s (Outthentic::Story::Stat->failures){
-    @s = (
-      $s->{path},
-      ( join ' ', map { "$_: $s->{vars}->{$_}" } keys %{$s->{vars}} ),
-      ( $s->{scenario_status} ? "OK" : "FAILED" ),
-      ( join "\n", (split "\n", $s->{stdout})[ -3 .. -1 ] )
-    );
-
-    @chk_list = ();
-    for my $c (@{$s->{check_stat}}) {
-      push @chk_list, ( $c->{status} ? "ok" : "not ok" ). " - $c->{message}";
-    }
-    push @chk_list, 'not defined' unless scalar @chk_list; 
+  @s = ( $s->{path}, ( join ' ', map { "$_:$s->{vars}->{$_}" } keys %{$s->{vars}} ) );
   write;
-
 }
 
 format STDERR_TOP =
@@ -68,18 +55,7 @@ format STDERR_TOP =
 .
 
 format STDERR =
-@*
-"story: $s[0]"
-@*
-"variables: $s[1]"
-@*
-"scenario status: $s[2]"
-stdout: ( last 3 lines )
-@*
-$s[3]
-check list:
-@* ~~
-shift @chk_list
----------------------------------------------------------------------------
+@* @*
+$s[0] $s[1]
 .
 
