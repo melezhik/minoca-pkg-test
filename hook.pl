@@ -56,6 +56,6 @@ format STDERR_TOP =
 
 format STDERR =
 @* @*
-$s[0] $s[1]
+$s[0], $s[1]
 .
 
