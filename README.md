@@ -32,7 +32,7 @@ Choose command line options to set up a *new* list:
     # or pick up packages versions from default list
     $ sparrow plg run minoca-pkg-test --param pkg-list=perl,sqlite 
 
-## Add new packages to default list.
+## Add new packages to default list
 
 Create a sparrow task:
 
