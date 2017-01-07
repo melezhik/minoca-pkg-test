@@ -67,6 +67,7 @@ You can omit versions check when defining packages list:
       screen
     </packages>
 
+
 # Configuring smoke tests
 
 Package in `package list` might have a smoke test command with output verified:
@@ -100,6 +101,14 @@ You may add a new commands or update existed ones:
       </tar>
       # bla bla bla
     </smoke_test>
+
+# Load configuration from file
+
+To make things fully automated you may save your desired configuration into file and
+load it in runtime:
+
+    $ sparrow task run minoca/third-party-test --ini /path/to/config/file
+
 
 # Helper actions
 
