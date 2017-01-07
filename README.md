@@ -23,23 +23,37 @@ On running minoca instance:
 
 By default package list to be verified defined at [default configuration file](https://github.com/melezhik/minoca-pkg-test/blob/master/suite.ini).
 
-You may redefine one either via command line:
+## Overriding package list
+
+Choose command line options to set up a *new* list:
 
     $ sparrow plg run minoca-pkg-test --param pkg-list=perl-5.20.1,sqlite-3080500
-    $ sparrow plg run minoca-pkg-test --param pkg-list=perl,sqlite # will pick up packages versions from default list
 
-Or via sparrow task:
+    # or pick up packages versions from default list
+    $ sparrow plg run minoca-pkg-test --param pkg-list=perl,sqlite 
+
+## Add new packages to default list.
+
+Create a sparrow task:
 
 
     $ sparrow project create minoca
     $ sparrow task add minoca third-party-test minoca-pkg-test
+
+Then set up a new packages to check:
+
     $ sparrow task ini minoca/third-party-test
 
+    # these 3 packages
+    # will be added to
+    # default list:
     <packages>
-      perl 5.20.1
-      sqlite 3080500  
-      screen 4.4.0
+      foo 0.1.1
+      bar 1.0.0  
+      baz 0.2.0
     </packages>
+
+Now run the task:
     
     $ sparrow task run minoca/third-party-test
 
@@ -55,7 +69,7 @@ You can omit versions check when defining packages list:
 
 # Configuring smoke tests
 
-Every package in `package list` could be optionally accompanied a smoke test command with output verified:
+Package in `package list` might have a smoke test command with output verified:
 
 
     <smoke_test>
@@ -75,15 +89,10 @@ Every package in `package list` could be optionally accompanied a smoke test com
 
 A default smoke test list is set at [default configuration file](https://github.com/melezhik/minoca-pkg-test/blob/master/suite.ini)
     
-You may redefine it as well:
+You may add a new commands or update existed ones:
 
     $ sparrow task ini minoca/third-party-test
 
-    <packages>
-      tar 1.27.1
-      # bla bla bla
-    </packages>
-  
     <smoke_test>
       <tar>
         command tar --version
@@ -92,11 +101,11 @@ You may redefine it as well:
       # bla bla bla
     </smoke_test>
 
-# Other helper actions
+# Helper actions
 
 ## List installed packages
 
-Sometimes it's good to know what is installed before running tests:
+To know what packages are already installed use `list-installed` action.
 
     $ sparrow plg run minoca-pkg-test --param action=list-installed
 
