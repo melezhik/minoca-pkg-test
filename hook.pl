@@ -17,6 +17,8 @@ if (config()->{'pkg-list'}){
 my $smoke_test    = config()->{'smoke_test'};
 my %bad_packages  = map { $_ => 1 } keys %{config()->{bad_packages}};
 
+run_story("packages-snapshot");
+
 for my $p (sort @list){
   if (my $version = $list->{$p} ){
     if ($bad_packages{$p}){
