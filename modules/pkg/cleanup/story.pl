@@ -7,6 +7,7 @@ open( my $fh, test_root_dir().'/installed.txt') or die "can't open file with ins
 while( my $l = <$fh>) {
   chomp $l;
   $installed{$l}=1;
+  print "basic package: $l ... \n";	
 }
 
 open(my $fh, '-|', 'opkg list-installed') or die "can't open `opkg list-installed` for read: $!";
