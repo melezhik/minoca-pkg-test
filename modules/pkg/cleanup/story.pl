@@ -11,9 +11,10 @@ while( my $l = <$fh>) {
 
 open(my $fh, '-|', 'opkg list-installed') or die "can't open `opkg list-installed` for read: $!";
 my $status = "ok";
+
 while ( my $p = <$fh>){
   chomp $p;
-  if $installed{$p} {
+  if ( $installed{$p} ) {
     print "skip $p removal as it basic package\n";	
   } else {
     print "removing $p ... \n";	
