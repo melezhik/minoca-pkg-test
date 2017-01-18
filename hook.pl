@@ -26,6 +26,7 @@ for my $p (sort @list){
     } else {
       run_story("pkg/install", { pkg => $p , version => $version  });
       run_story("pkg/test", { pkg => $p , command => $smoke_test->{$p}->{command}});
+      run_story("pkg/cleanup");
     }
   } else {
     my ($pkg,$version) = split /-/, $p;
@@ -34,6 +35,7 @@ for my $p (sort @list){
     } else{
       run_story("pkg/install", { pkg => $pkg , version => $version });
       run_story("pkg/test", { pkg => $pkg , command => $smoke_test->{$pkg}->{command}});
+      run_story("pkg/cleanup");
     }
   }
 }
