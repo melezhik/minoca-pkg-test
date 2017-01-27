@@ -27,10 +27,7 @@ By default package list to be verified defined at [default configuration file](h
 
 Choose command line options to set up a *new* list:
 
-    $ sparrow plg run minoca-pkg-test --param pkg-list=perl-5.20.1,sqlite-3080500
-
-    # or pick up packages versions from default list
-    $ sparrow plg run minoca-pkg-test --param pkg-list=perl,sqlite 
+    $ sparrow plg run minoca-pkg-test --param pkg-list=perl,sqlite
 
 ## Add new packages to default list
 
@@ -48,25 +45,14 @@ Then set up a new packages to check:
     # will be added to
     # default list:
     <packages>
-      foo 0.1.1
-      bar 1.0.0  
-      baz 0.2.0
+      foo
+      bar  
+      baz
     </packages>
 
 Now run the task:
     
     $ sparrow task run minoca/third-party-test
-
-You can omit versions check when defining packages list:
-
-    $ sparrow task ini minoca/third-party-test
-
-    <packages>
-      perl
-      sqlite
-      screen
-    </packages>
-
 
 # Configuring smoke tests
 

@@ -20,23 +20,12 @@ my %bad_packages  = map { $_ => 1 } keys %{config()->{bad_packages}};
 run_story("packages-snapshot");
 
 for my $p (sort @list){
-  if (my $version = $list->{$p} ){
-    if ($bad_packages{$p}){
-      run_story("pkg/install-fail", { pkg => $p , version => $version  });
-    } else {
-      run_story("pkg/install", { pkg => $p , version => $version  });
-      run_story("pkg/test", { pkg => $p , command => $smoke_test->{$p}->{command}});
-      run_story("pkg/cleanup");
-    }
+  if ($bad_packages{$p}){
+    run_story("pkg/install-fail", { pkg => $p });
   } else {
-    my ($pkg,$version) = split /-/, $p;
-    if ($bad_packages{$pkg}){
-      run_story("pkg/install-fail", { pkg => $pkg , version => $version });
-    } else{
-      run_story("pkg/install", { pkg => $pkg , version => $version });
-      run_story("pkg/test", { pkg => $pkg , command => $smoke_test->{$pkg}->{command}});
-      run_story("pkg/cleanup");
-    }
+    run_story("pkg/install", { pkg => $p });
+    run_story("pkg/test", { pkg => $p , command => $smoke_test->{$p}->{command}});
+    run_story("pkg/cleanup");
   }
 }
 

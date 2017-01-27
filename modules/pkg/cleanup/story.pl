@@ -6,14 +6,17 @@ open( my $fh, test_root_dir().'/installed.txt') or die "can't open file with ins
 
 while( my $l = <$fh>) {
   chomp $l;
-  $installed{$l}=1;
+  $l=~/(\S+?)\s+-/;
+  $installed{$l}=$1;
 }
 
 open(my $fh, '-|', 'opkg list-installed') or die "can't open `opkg list-installed` for read: $!";
 my $status = "ok";
 
-while ( my $p = <$fh>) {
-  chomp $p;
+while ( my $l = <$fh>) {
+  chomp $l;
+  $l=~/(\S+?)\s+-/;
+  my $p = $1;
   if ( $installed{$p} ) {
     print "skip $p removal as it basic package\n";	
   } else {

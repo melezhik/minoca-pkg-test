@@ -1,42 +1,7 @@
 # Package perl (5.20.1) installed in root is up to date.
-# 
-#
 # install sqlite - 3080500
 # Installing sqlite (3080500) on root.
 # Downloading http://www.minocacorp.com/packages/0.3/i686/main/sqlite_3080500_minoca-i686.ipk.
 # Configuring sqlite.
 
-
-
 regexp: (installed in root is up to date|Installing\s)
-
-
-generator: <<G
-
-my $stage = capture()->[0];
-(my $version = story_var('version'))=~s/\./\\./g;
-my $pkg = story_var('pkg');
-
-if ($stage=~/is up to date/){
- $version ? 
-    [ 'regexp: Package\s+'.$pkg.'\s+\('.$version.'\)\s+installed in root' ] : 
-    [ 'regexp: Package\s+'.$pkg.'\s+\(\S+\)\s+installed in root' ] 
-}elsif ($stage=~/Installing\s/){
-  [
-    ( 
-      $version ? 
-        'regexp: Installing\s+'.$pkg.'\s+\('.$version.'\)\s+on root' :
-        'regexp: Installing\s+'.$pkg.'\s+\(\S+\)\s+on root'
-      
-    ),
-
-    'Downloading',
-    'regexp: Configuring '.$pkg.'\.',
-  ]
-}else{
-  []
-}
-
-
-G
-
