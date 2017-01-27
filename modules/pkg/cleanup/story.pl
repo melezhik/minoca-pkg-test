@@ -7,7 +7,7 @@ open( my $fh, test_root_dir().'/installed.txt') or die "can't open file with ins
 while( my $l = <$fh>) {
   chomp $l;
   $l=~/(\S+?)\s+-/;
-  $installed{$l}=$1;
+  $installed{$1}=1;
 }
 
 open(my $fh, '-|', 'opkg list-installed') or die "can't open `opkg list-installed` for read: $!";
