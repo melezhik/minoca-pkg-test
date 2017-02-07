@@ -3,14 +3,22 @@ if (config()->{action} eq 'list-installed'){
   exit;
 }
 
-my $list =  config()->{packages};
-my $seen;
 my @list;
 
 if (config()->{'pkg-list'}){
   @list = split /,/, config()->{'pkg-list'};
 } else {
+
   @list = keys %$list;
+
+  open(my $fh, '-|', 'opkg list') or die "can't open `opkg list` for read: $!";
+  while ( my $l = <$fh>) {
+    chomp $l;
+    # wget - 1.15
+    $l=~/^(\S+?)\s+-\s/ or next;
+    push @list, $1;
+  }
+  close $fh;
 }
 
 
