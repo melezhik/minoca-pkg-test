@@ -26,9 +26,9 @@ On running minoca instance:
 
 ![minoca-pkg-test screen shot](https://raw.githubusercontent.com/melezhik/minoca-pkg-test/master/minoca-pkg-test.png)
 
-# Resolving package list
+# Resolving packages list
 
-Package list to check gets build in runtime parsing output of `opkg list` command
+Packages list to check gets build in runtime parsing output of `opkg list` command.
 
 ## Overriding package list
 
@@ -39,9 +39,9 @@ If you want to override package list choose --param pkg-list option:
 
 # Configuring smoke tests
 
-Smoke tests are shell commands gets executed with output gets analyzed. Minoca-pkg-test
-comes with only few smoke tests for some packages, if you want to define new one it is
-possible:
+Smoke tests are shell commands gets executed with output gets analyzed. 
+
+Minoca-pkg-test comes with only few smoke tests for some packages, if you want to define new ones it is possible:
 
     $ sparrow project create minoca
     $ sparrow task add minoca pkg-check minoca-pkg-test
@@ -67,6 +67,7 @@ possible:
       # bla bla bla
     </smoke_test>
 
+    $ sparrow task run minoca/pkg-check
 
 # Helper actions
 
